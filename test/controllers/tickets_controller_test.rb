@@ -1,4 +1,4 @@
-require 'test_helper'
+require './test/test_helper'
 
 class TicketsControllerTest < ActionController::TestCase
   setup do
@@ -18,7 +18,7 @@ class TicketsControllerTest < ActionController::TestCase
 
   test "should create ticket" do
     assert_difference('Ticket.count') do
-      post :create, ticket: { body: @ticket.body, department: @ticket.department, subject: @ticket.subject, token: @ticket.token }
+      post :create, ticket: { body: @ticket.body, department: @ticket.department, subject: @ticket.subject }
     end
 
     assert_redirected_to ticket_path(assigns(:ticket))
@@ -35,7 +35,7 @@ class TicketsControllerTest < ActionController::TestCase
   end
 
   test "should update ticket" do
-    patch :update, id: @ticket, ticket: { body: @ticket.body, department: @ticket.department, subject: @ticket.subject, token: @ticket.token }
+    patch :update, id: @ticket, ticket: { body: @ticket.body, department: @ticket.department, subject: @ticket.subject }
     assert_redirected_to ticket_path(assigns(:ticket))
   end
 
