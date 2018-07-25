@@ -26,5 +26,7 @@ group :test do
   gem 'rspec_junit_formatter'
   gem 'rspec-its'
   gem 'rspec-example_steps'
+  gem 'factory_girl', '~> 4.1'
+  gem 'factory_girl_rails', '~> 4.1'
 end
 
