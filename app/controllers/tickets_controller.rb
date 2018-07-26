@@ -1,6 +1,6 @@
 class TicketsController < ApplicationController
-  
-  before_action :authorize, only: :destroy
+
+  before_action :authorize, only: [:index, :destroy]
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -49,6 +49,15 @@ class TicketsController < ApplicationController
       format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def search
+    ticket = Ticket.find_by(token: params[:search]) if params[:search].present?
+    if ticket
+      redirect_to(ticket_path(ticket))
+    else     
+      redirect_to(root_path, alert: "Ticket does not exist")
+    end  
   end
 
   private
