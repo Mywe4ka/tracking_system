@@ -1,4 +1,4 @@
-<%= form_for(@ticket) do |f| %>
+<%= form_for(setup_ticket(@ticket)) do |f| %>
   <% if @ticket.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
@@ -15,6 +15,16 @@
     <%= f.label :reference %><br>
     <%= f.text_field :token, readonly: true  %>
   </div>
+  <%= f.fields_for :customer, @customer do |ff| %>
+    <div class="field">
+      <%= ff.label :name %><br>
+      <%= ff.text_field :name %>
+    </div>
+    <div class="field">
+      <%= ff.label :email %><br>
+      <%= ff.text_field :email %>
+    </div>
+  <% end %>
   <div class="field">
     <%= f.label :department %><br>
     <%= f.text_field :department %>

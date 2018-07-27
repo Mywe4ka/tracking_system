@@ -1,2 +1,5 @@
-class Customer < ActiveRecord::Base
+class Customer < User
+
+  has_many :tickets
+
 end

@@ -5,7 +5,7 @@ class AddTypeAndPasswordToUsers < ActiveRecord::Migration
   end
 
   def self.down
-  	remove_column :users, :type, :string if column_exists? :users, :type
+    remove_column :users, :type, :string if column_exists? :users, :type
     remove_column :users, :password_digest, :string if column_exists? :users, :password_digest
   end
 end

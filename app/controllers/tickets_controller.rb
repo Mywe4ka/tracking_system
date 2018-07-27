@@ -19,7 +19,7 @@ class TicketsController < ApplicationController
 
   def create
     @ticket = Ticket.new(ticket_params)
-
+    @ticket.customer = Customer.first_or_initialize(ticket_params[:customer])
     respond_to do |format|
       if @ticket.save
         format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
@@ -66,6 +66,6 @@ class TicketsController < ApplicationController
     end
 
     def ticket_params
-      params.require(:ticket).permit(:token, :department, :subject, :body)
+      params.require(:ticket).permit(:token, :department, :subject, :body, :customer_id, customer_attributes: [:id, :name, :email, :type])
     end
 end
