@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     collection do
       get :search
     end
+    member do
+      get :reply_window
+      post :submit_reply
+    end
   end
 
   get '/login' => 'sessions#new'

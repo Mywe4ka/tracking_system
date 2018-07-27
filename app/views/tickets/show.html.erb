@@ -20,5 +20,5 @@
   <%= @ticket.body %>
 </p>
 
-<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
-<%= link_to 'Back', :back %>
+<%= link_to 'Back', :back %> |
+<%= link_to 'Reply', reply_window_ticket_path(@ticket) %>

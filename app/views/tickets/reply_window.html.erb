@@ -1,0 +1,7 @@
+<h2>Reply for the ticket</h2>
+<%= @ticket.token -%><br/>
+
+<%= form_tag(controller: 'tickets', action: 'submit_reply', id: @ticket) do -%>
+  <%= text_area_tag :note %><br/>
+  <%= submit_tag 'Submit' %>
+<% end -%>

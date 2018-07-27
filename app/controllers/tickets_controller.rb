@@ -1,7 +1,7 @@
 class TicketsController < ApplicationController
 
-  before_action :authorize, only: [:index, :destroy]
-  before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, only: [:index, :destroy, :search, :reply_window, :submit_reply]
+  before_action :set_ticket, except: [:index, :new, :create, :search]
 
   def index
     @tickets = Ticket.all
@@ -58,6 +58,14 @@ class TicketsController < ApplicationController
     else     
       redirect_to(root_path, alert: "Ticket does not exist")
     end  
+  end
+
+  def reply_window
+  end
+
+  def submit_reply
+    ActionNotifier.reply_for_the_ticket(@ticket.token, @ticket.customer, params[:note])
+    redirect_to(tickets_path)
   end
 
   private
